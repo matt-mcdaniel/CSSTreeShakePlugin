@@ -2,6 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 const classRegex = /\.(-?[_a-zA-Z]+[_a-zA-Z0-9-]*)(?![^\{]*\})/gi;
+const test = `className:"pagination__last"`;
+const regexWrapper = (className) => {
+	return new RegExp(`className:( )?('|")` + className + `('|")`, 'g');
+}
 
 function RemoveUnusedStyles() {}
 
@@ -24,13 +28,14 @@ RemoveUnusedStyles.prototype.apply = function(compiler) {
 			return acc;
 		}, []);
 
-
-
 		const classNamesNotInReact = reactFiles.reduce((acc, filename) => {
 			const source = compilation.assets[filename].source();
 
 			const matches = classNamesInStyles
-				.filter(className => !new RegExp(`'` + className + `'`).test(source));
+				.filter(className => {
+					console.log(className)
+					return !regexWrapper(className).test(source)
+				});
 
 			acc = acc.concat(matches);
 
