@@ -1,0 +1,14 @@
+{
+  "name": "remove-class-names-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Remove classes from .css that don't exist as a \"className\" in a React.js bundle.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt McDaniel",
+  "license": "MIT"
+}
