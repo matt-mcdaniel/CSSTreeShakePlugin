@@ -9,6 +9,8 @@ new RemoveClassNamesPlugin()
 
 Remove classes from .css that don't exist as a "className" in a React.js bundle.
 
+---
+## Usage
 **webpack.config.js**
 ```
 module.exports = {
@@ -19,8 +21,7 @@ module.exports = {
 ```
 
 ---
-
-**Example**
+## Example
 
 **index.js**
 ```
@@ -49,8 +50,8 @@ const Root = (props) => {
 }
 ```
 
-### Before
-**build/styles.css**
+
+**build/styles.css** *(Before)*
 ```
 .postcard {
   background-color: cornsilk;
@@ -63,8 +64,11 @@ const Root = (props) => {
   color: red; }
 ```
 
-### After
-**build/styles.css**
+
+
+**build/styles.css** *(After)*
+
+Classes that have been placed into stylesheets, but not used in a React codebase will not be present in your final css output.
 ```
 .postcard {
   background-color: cornsilk;
@@ -72,8 +76,7 @@ const Root = (props) => {
   height: 200px;
   text-align: center; }
 
-/* classes not used in the React bundle */
-/* are not included in the css output */
+// 🏄🏽
 ```
 
 
