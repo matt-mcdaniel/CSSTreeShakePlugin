@@ -23,9 +23,11 @@ module.exports = {
 ---
 ## Example
 
+### Before
+
 **index.js**
 ```
-const Root = (props) => {
+const Postcard = (props) => {
 	return (
 		<div className="postcard">
 			Hello from San Diego!
@@ -36,22 +38,7 @@ const Root = (props) => {
 ...
 ```
 
-**styles.css**
-```
-.postcard {
-	background-color: cornsilk;
-	width: 400px;
-	height: 200px;
-	text-align: center;
-}
-
-.postcard__unused {
-	color: red;
-}
-```
-
-
-**build/styles.css** *(Before)*
+**build/styles.css**
 ```
 .postcard {
   background-color: cornsilk;
@@ -64,9 +51,9 @@ const Root = (props) => {
   color: red; }
 ```
 
+### After
 
-
-**build/styles.css** *(After)*
+**build/styles.css**
 
 Classes that have been placed into stylesheets, but not used in a React codebase will not be present in your final css output.
 ```
