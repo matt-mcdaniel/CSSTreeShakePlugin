@@ -1,6 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const RemoveUnusedStyles = require('../index.js');
+const CSSTreeShakePlugin = require('../index.js');
 
 module.exports = {
 	entry: path.join(__dirname, 'index.js'),
@@ -21,8 +21,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new RemoveUnusedStyles({
-			outputPath: './build',
+		new CSSTreeShakePlugin({
 			showInfo: true
 		}),
 		new ExtractTextPlugin({

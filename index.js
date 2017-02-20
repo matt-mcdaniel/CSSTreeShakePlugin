@@ -10,11 +10,11 @@ const classInCSSRegex = (className) => {
 	return re;
 }
 
-function RemoveUnusedStyles(options) {
+function CSSTreeShakePlugin(options) {
 	this.options = options;
 }
 
-RemoveUnusedStyles.prototype.apply = function(compiler) {
+CSSTreeShakePlugin.prototype.apply = function(compiler) {
 	compiler.plugin('emit', (compilation, callback) => {
 		const styleFiles = Object.keys(compilation.assets).filter(asset => {
 			return /\.css$/.test(asset);
@@ -75,4 +75,4 @@ RemoveUnusedStyles.prototype.apply = function(compiler) {
 	})
 }
 
-module.exports = RemoveUnusedStyles;
+module.exports = CSSTreeShakePlugin;

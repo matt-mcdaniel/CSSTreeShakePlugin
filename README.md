@@ -1,23 +1,35 @@
-# Remove classNames
-## Webpack Plugin
-### Optimize CSS builds in React projects
+# CSS Tree Shake Plugin for Webpack
+### Optimize CSS builds
 
-```
-new RemoveClassNamesPlugin()
-```
-
-
-Remove classes from .css that don't exist as a "className" in a React.js bundle.
+Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output.
 
 ---
 ## Usage
-**webpack.config.js**
+
+Install with npm.
 ```
+npm install css-tree-shake-plugin --save-dev
+```
+
+Include in your webpack configuration.
+**webpack.config.js**
+```js
 module.exports = {
 	plugins: [
 		new RemoveClassNamesPlugin()
 	]
 }
+```
+
+### Options
+
+Show classes being removed.
+```js
+plugins: [
+  new RemoveClassNamesPlugin({
+    showInfo: true
+  })
+]
 ```
 
 ---
