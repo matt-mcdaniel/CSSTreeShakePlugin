@@ -12,12 +12,11 @@ npm install css-tree-shake-plugin --save-dev
 ```
 
 Include in your webpack configuration.
-
 **webpack.config.js**
 ```js
 module.exports = {
 	plugins: [
-		new RemoveClassNamesPlugin()
+		new CSSTreeShakePlugin()
 	]
 }
 ```
@@ -27,7 +26,7 @@ module.exports = {
 Show classes being removed.
 ```js
 plugins: [
-  new RemoveClassNamesPlugin({
+  new CSSTreeShakePlugin({
     showInfo: true
   })
 ]
@@ -39,7 +38,7 @@ plugins: [
 ### Before
 
 **index.js**
-```jsx
+```
 const Postcard = (props) => {
 	return (
 		<div className="postcard">
