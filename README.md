@@ -3,8 +3,9 @@
 ![CSS Tree Shake Logo](http://i.imgur.com/BRvvS1O.jpg)
 
 ## Optimize CSS Builds in Webpack
-Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output.
+Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output. This will remove all classes *not* present in JavaScript built output, so any classes declared in HTML files will not be detected, and will be remove.
 
+* Built for Webpack 2
 * No package dependencies
 * Works on minified/unminified code
 * Compatible with React.js builds
@@ -60,11 +61,11 @@ const Postcard = (props) => {
   background-color: cornsilk;
   width: 400px;
   height: 200px;
-  text-align: center; 
+  text-align: center;
 }
 
 .postcard__stamp {
-  color: red; 
+  color: red;
 }
 ```
 
@@ -78,7 +79,7 @@ The `postcard__stamp` class was removed.
   background-color: cornsilk;
   width: 400px;
   height: 200px;
-  text-align: center; 
+  text-align: center;
 }
 ```
 

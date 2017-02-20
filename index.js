@@ -11,7 +11,7 @@ const classInCSSRegex = (className) => {
 }
 
 function CSSTreeShakePlugin(options) {
-	this.options = options;
+	this.options = Object.assign({}, {remove: true, showInfo: true}, options);
 }
 
 CSSTreeShakePlugin.prototype.apply = function(compiler) {
@@ -40,7 +40,13 @@ CSSTreeShakePlugin.prototype.apply = function(compiler) {
 		}, '');
 
 		const classesNotInJS = classNamesInStyles
-			.filter((className) => !classInJSRegex(className).test(reactContents));
+			.filter((className) => {
+				if (this.options.ignore && this.options.ignore.indexOf(className) !== -1) {
+					return false;
+				}
+
+				return !classInJSRegex(className).test(reactContents)
+			});
 
 		const classesDeduped = classesNotInJS.reduce((acc, cur) => {
 			if (acc.indexOf(cur) === -1) {
@@ -52,6 +58,12 @@ CSSTreeShakePlugin.prototype.apply = function(compiler) {
 
 		if (this.options.showInfo) {
 			console.log(`[${moduleName}]: Removing classes...`, classesDeduped);
+		}
+
+		if (!this.options.remove) {
+			callback();
+
+			return;
 		}
 
 		const updatedStyles = styleFiles.map(function(filename) {

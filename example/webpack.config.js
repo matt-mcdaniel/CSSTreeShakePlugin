@@ -22,7 +22,8 @@ module.exports = {
 	},
 	plugins: [
 		new CSSTreeShakePlugin({
-			showInfo: true
+			showInfo: true,
+			ignore: ['postcard__ignore']
 		}),
 		new ExtractTextPlugin({
 			filename: 'styles.css',
