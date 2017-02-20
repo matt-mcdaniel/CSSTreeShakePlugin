@@ -5,6 +5,7 @@ Writing CSS/Sass/Less can be a finicky process and frequent changes often leave 
 
 * Works with React.js
 * Converts css/scss/less dependencies loaded with ExtractTextPlugin
+* No package dependencies
 
 ---
 ## Usage
