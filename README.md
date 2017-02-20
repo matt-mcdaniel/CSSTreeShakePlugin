@@ -3,9 +3,10 @@
 
 Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output.
 
-* Works with React.js
-* Converts css/scss/less dependencies loaded with ExtractTextPlugin
 * No package dependencies
+* Works on minified/unminified code
+* Compatible with React.js builds
+* Compatible with [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)
 
 ---
 ## Usage
