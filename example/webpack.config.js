@@ -22,7 +22,8 @@ module.exports = {
 	},
 	plugins: [
 		new RemoveUnusedStyles({
-			outputPath: './build'
+			outputPath: './build',
+			showInfo: true
 		}),
 		new ExtractTextPlugin({
 			filename: 'styles.css',

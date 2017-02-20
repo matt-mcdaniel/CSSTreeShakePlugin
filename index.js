@@ -1,16 +1,21 @@
-const fs = require('fs');
-const path = require('path');
+const moduleName = 'CSSTreeShake';
 
-const classRegex = /\.(-?[_a-zA-Z]+[_a-zA-Z0-9-]*)(?![^\{]*\})/gi;
-const test = `className:"pagination__last"`;
-const regexWrapper = (className) => {
-	return new RegExp(`className:( )?('|")` + className + `('|")`, 'g');
+const classNameRegex = /\.(-?[_a-zA-Z]+[_a-zA-Z0-9-]*)(?![^\{]*\})/gi;
+const classInJSRegex = (className) => {
+	const re = new RegExp(`('|")([-_a-zA-Z0-9-\\s]*)?` + className + `([-_a-zA-Z0-9-\\s]*)('|")`, 'g');
+	return re;
+}
+const classInCSSRegex = (className) => {
+	const re = RegExp(`\.` + className + `(\\s)?{[^\}]*\}`);
+	return re;
 }
 
-function RemoveUnusedStyles() {}
+function RemoveUnusedStyles(options) {
+	this.options = options;
+}
 
 RemoveUnusedStyles.prototype.apply = function(compiler) {
-	compiler.plugin('emit', function(compilation, callback) {
+	compiler.plugin('emit', (compilation, callback) => {
 		const styleFiles = Object.keys(compilation.assets).filter(asset => {
 			return /\.css$/.test(asset);
 		});
@@ -21,32 +26,39 @@ RemoveUnusedStyles.prototype.apply = function(compiler) {
 
 		const classNamesInStyles = styleFiles.reduce((acc, filename) => {
 			const source = compilation.assets[filename].source();
-			const match = source.match(classRegex).map(str => str.slice(1));
+			const match = source.match(classNameRegex).map(str => str.slice(1));
 
 			acc = acc.concat(match);
 
 			return acc;
 		}, []);
 
-		const classNamesNotInReact = reactFiles.reduce((acc, filename) => {
-			const source = compilation.assets[filename].source();
+		const reactContents = reactFiles.reduce((acc, filename) => {
+			const contents = compilation.assets[filename].source();
+			acc += contents;
+			return acc;
+		}, '');
 
-			const matches = classNamesInStyles
-				.filter(className => {
-					console.log(className)
-					return !regexWrapper(className).test(source)
-				});
+		const classesNotInJS = classNamesInStyles
+			.filter((className) => !classInJSRegex(className).test(reactContents));
 
-			acc = acc.concat(matches);
+		const classesDeduped = classesNotInJS.reduce((acc, cur) => {
+			if (acc.indexOf(cur) === -1) {
+				acc.push(cur);
+			}
 
 			return acc;
 		}, []);
 
+		if (this.options.showInfo) {
+			console.log(`[${moduleName}]: Removing classes...`, classesDeduped);
+		}
+
 		const updatedStyles = styleFiles.map(function(filename) {
 			const source = compilation.assets[filename].source();
 
-			let replaced = classNamesNotInReact.reduce((acc, className) => {
-				return acc.replace(new RegExp('\.' + className + '(.|[\r\n])*\}'), '');
+			let replaced = classesDeduped.reduce((acc, className) => {
+				return acc.replace(classInCSSRegex(className), '');
 			}, source);
 
 			return replaced;
