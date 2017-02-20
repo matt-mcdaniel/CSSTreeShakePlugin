@@ -16,7 +16,6 @@ Install with npm.
 npm install css-tree-shake-plugin --save-dev
 ```
 
-Include in your webpack configuration.
 **webpack.config.js**
 ```js
 module.exports = {
