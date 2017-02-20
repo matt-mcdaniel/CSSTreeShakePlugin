@@ -1,6 +1,8 @@
 # CSS Tree Shake Plugin for Webpack
 ### Optimize CSS builds
 
+![CSS Tree Shake Logo](http://imgur.com/a/Ntd1l "CSS Tree Shake Plugin")
+
 Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output.
 
 * No package dependencies
