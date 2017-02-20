@@ -40,7 +40,7 @@ plugins: [
 ---
 ## Example
 
-### Before
+### Source Code
 
 **index.js**
 ```
@@ -55,32 +55,32 @@ const Postcard = (props) => {
 ...
 ```
 
-**build/styles.css**
+**styles.css**
 ```
 .postcard {
   background-color: cornsilk;
   width: 400px;
   height: 200px;
-  text-align: center; }
+  text-align: center; 
+}
 
-// 😕
-.postcard__unused {
-  color: red; }
+.postcard__stamp {
+  color: red; 
+}
 ```
 
-### After
+### Build Output
 
 **build/styles.css**
 
-Classes that have been placed into stylesheets, but not used in a React codebase will not be present in your final css output.
+The `postcard__stamp` class was removed.
 ```
 .postcard {
   background-color: cornsilk;
   width: 400px;
   height: 200px;
-  text-align: center; }
-
-// 🏄🏽
+  text-align: center; 
+}
 ```
 
 
