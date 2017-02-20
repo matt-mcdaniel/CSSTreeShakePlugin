@@ -43,7 +43,7 @@ plugins: [
 ### Source Code
 
 **index.js**
-```
+```jsx
 const Postcard = (props) => {
 	return (
 		<div className="postcard">
@@ -54,7 +54,7 @@ const Postcard = (props) => {
 ```
 
 **styles.css**
-```
+```css
 .postcard {
   background-color: cornsilk;
   width: 400px;
@@ -72,7 +72,7 @@ const Postcard = (props) => {
 **build/styles.css**
 
 The `postcard__stamp` class was removed.
-```
+```css
 .postcard {
   background-color: cornsilk;
   width: 400px;
