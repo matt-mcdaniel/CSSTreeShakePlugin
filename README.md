@@ -39,7 +39,7 @@ plugins: [
 ### Before
 
 **index.js**
-```
+```jsx
 const Postcard = (props) => {
 	return (
 		<div className="postcard">
