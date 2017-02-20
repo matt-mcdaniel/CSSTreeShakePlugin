@@ -51,8 +51,6 @@ const Postcard = (props) => {
 		</div>
 	)
 };
-
-...
 ```
 
 **styles.css**
