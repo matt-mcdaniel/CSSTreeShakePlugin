@@ -3,7 +3,7 @@
 ![CSS Tree Shake Logo](http://i.imgur.com/BRvvS1O.jpg)
 
 ## Optimize CSS Builds in Webpack
-Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output. This will remove all classes *not* present in JavaScript built output, so any classes declared in HTML files will not be detected, and will be remove.
+Writing CSS/Sass/Less can be a finicky process and frequent changes often leave unused or "dead" code in your CSS file. This plugin will determine from your bundled JavaScript which classes were used and only include those classes in your bundled, CSS output. This will remove all classes *not* present in your JavaScript built output.
 
 * Built for Webpack 2
 * No package dependencies
@@ -32,10 +32,17 @@ module.exports = {
 
 Show classes being removed.
 ```js
+const options = {
+  // Will show the names of classes being removed from build
+  showInfo: true,
+  // These classes, if they exist, will be *included* in your build
+  ignore: ['postcard__address'],
+  // Do not remove any classes (defaults to true)
+  remove: false
+}
+
 plugins: [
-  new CSSTreeShakePlugin({
-    showInfo: true
-  })
+  new CSSTreeShakePlugin(options)
 ]
 ```
 
