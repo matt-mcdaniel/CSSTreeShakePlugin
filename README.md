@@ -49,17 +49,13 @@ plugins: [
 ---
 ## Example
 
-### Source Code
-
 **index.js**
 ```jsx
-const Postcard = (props) => {
-	return (
-		<div className="postcard">
-			Hello from San Diego!
-		</div>
-	)
-};
+const Postcard = (props) => (
+   <div className="postcard">
+      Hello from San Diego!
+   </div>
+)
 ```
 
 **styles.css**
