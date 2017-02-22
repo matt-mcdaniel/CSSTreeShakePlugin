@@ -11,6 +11,16 @@ Writing CSS/Sass/Less can be a finicky process and frequent changes often leave 
 * Compatible with React.js builds
 * Compatible with [ExtractTextPlugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)
 
+**Not yet suitable for production, under active development**
+
+Current recommended usage for detecting unused classes and manually removing them from your codebase:
+```js
+new CSSTreeShakePlugin({
+  showInfo: true,
+  remove: false
+});
+```
+
 ---
 ## Usage
 

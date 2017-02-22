@@ -1,6 +1,6 @@
 {
   "name": "css-tree-shake-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Remove classes from .css that don't exist as a \"className\" in a React.js bundle.",
   "main": "index.js",
   "directories": {
